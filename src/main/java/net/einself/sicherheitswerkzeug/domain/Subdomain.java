@@ -2,8 +2,6 @@ package net.einself.sicherheitswerkzeug.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-import java.net.InetAddress;
-
 public class Subdomain {
 
     @JSONField(ordinal = 100)
@@ -15,10 +13,10 @@ public class Subdomain {
     @JSONField(ordinal = 120)
     private final String fqdn;
 
-    public Subdomain(InetAddress inetAddress) {
-        hostname = inetAddress.getHostName();
-        ip = inetAddress.getHostAddress();
-        fqdn = inetAddress.getCanonicalHostName();
+    public Subdomain(String hostname, String ip, String fqdn) {
+        this.hostname = hostname;
+        this.ip = ip;
+        this.fqdn = fqdn;
     }
 
     public String getHostname() {

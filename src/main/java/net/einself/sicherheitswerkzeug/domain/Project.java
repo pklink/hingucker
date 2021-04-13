@@ -1,19 +1,24 @@
 package net.einself.sicherheitswerkzeug.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Project {
 
-    private final String domain;
+    @JSONField(ordinal = 90)
+    private final String target;
+
+    @JSONField(ordinal = 100)
     private final List<Subdomain> subdomains = new ArrayList<>();
 
-    public Project(String domain) {
-        this.domain = domain;
+    public Project(String target) {
+        this.target = target;
     }
 
-    public String getDomain() {
-        return domain;
+    public String getTarget() {
+        return target;
     }
 
     public List<Subdomain> getSubdomains() {
