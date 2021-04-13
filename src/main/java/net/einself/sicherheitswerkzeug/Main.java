@@ -14,14 +14,13 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 import java.nio.charset.Charset;
 
 public class Main {
 
-    private final static Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
-    public static void main(String[] argv) throws UnknownHostException {
+    public static void main(String[] argv) {
         final var args = new Args();
         JCommander.newBuilder()
                 .addObject(args)

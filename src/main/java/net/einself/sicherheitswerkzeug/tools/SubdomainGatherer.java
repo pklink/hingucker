@@ -1,8 +1,6 @@
 package net.einself.sicherheitswerkzeug.tools;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.xbill.DNS.SimpleResolver;
 
 import java.io.File;
@@ -18,22 +16,19 @@ import static java.util.stream.Collectors.toList;
 
 public class SubdomainGatherer {
 
-    private final static Logger LOGGER = LogManager.getLogger();
-
     private final File nameListFile;
 
     public SubdomainGatherer(File nameListFile) {
         this.nameListFile = nameListFile;
     }
 
-    public List<InetSocketAddress> run(String domain) throws UnknownHostException {
+    public List<InetSocketAddress> run(String domain) {
         return getNames(nameListFile).stream()
                 .map(name -> name + "." + domain)
                 .map(this::createResolver)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .map(SimpleResolver::getAddress)
-                .peek(inetSocketAddress -> LOGGER.info("Found {}", inetSocketAddress))
                 .collect(toList());
     }
 
