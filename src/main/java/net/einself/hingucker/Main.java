@@ -1,7 +1,10 @@
 package net.einself.hingucker;
 
 import com.beust.jcommander.JCommander;
+import com.google.inject.Guice;
 import net.einself.hingucker.core.data.DomainDataResult;
+import net.einself.hingucker.databus.DataBus;
+import net.einself.hingucker.databus.DataBusModule;
 import net.einself.hingucker.member.httprobe.HttpProbeMember;
 import net.einself.hingucker.member.output.OutputMember;
 import net.einself.hingucker.member.subdomaingatherer.SubdomainGathererMember;
@@ -12,13 +15,18 @@ public class Main {
     public static void main(String[] argv) {
         final ProgramArguments args = createProgramArguments(argv);
 
-        DataBus.INSTANCE.subscribe(new SubdomainGathererMember());
-        DataBus.INSTANCE.subscribe(new HttpProbeMember());
-        DataBus.INSTANCE.subscribe(new UrlMember());
+        final var injector = Guice.createInjector(
+                new DataBusModule()
+        );
 
-        DataBus.INSTANCE.subscribe(new OutputMember());
+        final var dataBus = injector.getInstance(DataBus.class);
 
-        DataBus.INSTANCE.publish(new DomainDataResult(args.getTarget()));
+        dataBus.subscribe(injector.getInstance(SubdomainGathererMember.class));
+        dataBus.subscribe(injector.getInstance(HttpProbeMember.class));
+        dataBus.subscribe(injector.getInstance(UrlMember.class));
+        dataBus.subscribe(injector.getInstance(OutputMember.class));
+
+        dataBus.publish(new DomainDataResult(args.getTarget()));
     }
 
     private static ProgramArguments createProgramArguments(String[] argv) {

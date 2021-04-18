@@ -1,6 +1,6 @@
 package net.einself.hingucker.member.subdomaingatherer.handler;
 
-import net.einself.hingucker.DataBus;
+import net.einself.hingucker.databus.DataBus;
 import net.einself.hingucker.core.data.DomainDataResult;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -23,8 +23,10 @@ public class DomainHandler {
 
     private final DomainDataResult domain;
     private final File nameListFile;
+    private final DataBus dataBus;
 
-    public DomainHandler(DomainDataResult domain) {
+    public DomainHandler(DataBus dataBus, DomainDataResult domain) {
+        this.dataBus = dataBus;
         this.domain = domain;
         final var namelistFilepath = System.getenv().get("NAMELIST_FILEPATH");
         this.nameListFile = new File(namelistFilepath);
@@ -51,7 +53,7 @@ public class DomainHandler {
     }
 
     private void publish(InetSocketAddress inetSocketAddress) {
-        DataBus.INSTANCE.publish(createDomain(inetSocketAddress));
+        dataBus.publish(createDomain(inetSocketAddress));
     }
 
     private DomainDataResult createDomain(InetSocketAddress inetSocketAddress) {
