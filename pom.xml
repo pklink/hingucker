@@ -31,14 +31,21 @@
         </dependency>
 
         <dependency>
-            <groupId>org.simpleflatmapper</groupId>
-            <artifactId>sfm-csv</artifactId>
-            <version>8.2.3</version>
-        </dependency>
-        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.73</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.konghq</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>3.11.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
         </dependency>
 
         <dependency>
