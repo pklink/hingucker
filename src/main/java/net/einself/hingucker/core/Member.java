@@ -1,4 +1,4 @@
-package net.einself.hingucker.member;
+package net.einself.hingucker.core;
 
 import net.einself.hingucker.core.data.Data;
 

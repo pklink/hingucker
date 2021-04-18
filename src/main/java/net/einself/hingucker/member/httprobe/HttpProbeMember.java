@@ -2,7 +2,7 @@ package net.einself.hingucker.member.httprobe;
 
 import net.einself.hingucker.core.data.UrlData;
 import net.einself.hingucker.databus.DataBus;
-import net.einself.hingucker.member.Member;
+import net.einself.hingucker.core.Member;
 import net.einself.hingucker.core.data.Data;
 import net.einself.hingucker.member.httprobe.handler.UrlHandler;
 import org.apache.logging.log4j.LogManager;

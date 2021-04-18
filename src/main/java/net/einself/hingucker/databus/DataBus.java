@@ -1,7 +1,7 @@
 package net.einself.hingucker.databus;
 
 import net.einself.hingucker.core.data.Data;
-import net.einself.hingucker.member.Member;
+import net.einself.hingucker.core.Member;
 
 import java.util.ArrayList;
 import java.util.List;

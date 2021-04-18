@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import net.einself.hingucker.core.data.Data;
 import net.einself.hingucker.core.data.Result;
-import net.einself.hingucker.member.Member;
+import net.einself.hingucker.core.Member;
 import net.einself.hingucker.member.output.domain.Project;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
