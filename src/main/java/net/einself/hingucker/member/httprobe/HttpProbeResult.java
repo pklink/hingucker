@@ -1,6 +1,6 @@
-package net.einself.sicherheitswerkzeug.member.httprobe;
+package net.einself.hingucker.member.httprobe;
 
-import net.einself.sicherheitswerkzeug.core.data.Data;
+import net.einself.hingucker.core.data.Data;
 
 import java.util.List;
 

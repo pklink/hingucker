@@ -1,10 +1,10 @@
-package net.einself.sicherheitswerkzeug.member.url;
+package net.einself.hingucker.member.url;
 
-import net.einself.sicherheitswerkzeug.DataBus;
-import net.einself.sicherheitswerkzeug.core.data.Data;
-import net.einself.sicherheitswerkzeug.core.data.DomainDataResult;
-import net.einself.sicherheitswerkzeug.core.data.UrlData;
-import net.einself.sicherheitswerkzeug.member.Member;
+import net.einself.hingucker.DataBus;
+import net.einself.hingucker.core.data.Data;
+import net.einself.hingucker.core.data.DomainDataResult;
+import net.einself.hingucker.core.data.UrlData;
+import net.einself.hingucker.member.Member;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

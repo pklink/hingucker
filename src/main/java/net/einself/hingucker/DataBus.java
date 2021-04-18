@@ -1,7 +1,7 @@
-package net.einself.sicherheitswerkzeug;
+package net.einself.hingucker;
 
-import net.einself.sicherheitswerkzeug.core.data.Data;
-import net.einself.sicherheitswerkzeug.member.Member;
+import net.einself.hingucker.core.data.Data;
+import net.einself.hingucker.member.Member;
 
 import java.util.ArrayList;
 import java.util.List;

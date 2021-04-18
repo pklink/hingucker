@@ -1,11 +1,11 @@
-package net.einself.sicherheitswerkzeug;
+package net.einself.hingucker;
 
 import com.beust.jcommander.JCommander;
-import net.einself.sicherheitswerkzeug.core.data.DomainDataResult;
-import net.einself.sicherheitswerkzeug.member.httprobe.HttpProbeMember;
-import net.einself.sicherheitswerkzeug.member.output.OutputMember;
-import net.einself.sicherheitswerkzeug.member.subdomaingatherer.SubdomainGathererMember;
-import net.einself.sicherheitswerkzeug.member.url.UrlMember;
+import net.einself.hingucker.core.data.DomainDataResult;
+import net.einself.hingucker.member.httprobe.HttpProbeMember;
+import net.einself.hingucker.member.output.OutputMember;
+import net.einself.hingucker.member.subdomaingatherer.SubdomainGathererMember;
+import net.einself.hingucker.member.url.UrlMember;
 
 public class Main {
 

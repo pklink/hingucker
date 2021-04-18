@@ -1,7 +1,7 @@
-package net.einself.sicherheitswerkzeug.member.subdomaingatherer.handler;
+package net.einself.hingucker.member.subdomaingatherer.handler;
 
-import net.einself.sicherheitswerkzeug.DataBus;
-import net.einself.sicherheitswerkzeug.core.data.DomainDataResult;
+import net.einself.hingucker.DataBus;
+import net.einself.hingucker.core.data.DomainDataResult;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

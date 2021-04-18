@@ -1,4 +1,4 @@
-package net.einself.sicherheitswerkzeug;
+package net.einself.hingucker;
 
 import com.beust.jcommander.Parameter;
 

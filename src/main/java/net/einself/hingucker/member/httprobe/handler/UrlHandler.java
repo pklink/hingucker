@@ -1,12 +1,12 @@
-package net.einself.sicherheitswerkzeug.member.httprobe.handler;
+package net.einself.hingucker.member.httprobe.handler;
 
 import kong.unirest.Headers;
 import kong.unirest.Unirest;
 import kong.unirest.UnirestException;
-import net.einself.sicherheitswerkzeug.DataBus;
-import net.einself.sicherheitswerkzeug.core.data.HttpHeaderData;
-import net.einself.sicherheitswerkzeug.core.data.HttpResponseDataResult;
-import net.einself.sicherheitswerkzeug.core.data.UrlData;
+import net.einself.hingucker.DataBus;
+import net.einself.hingucker.core.data.HttpHeaderData;
+import net.einself.hingucker.core.data.HttpResponseDataResult;
+import net.einself.hingucker.core.data.UrlData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

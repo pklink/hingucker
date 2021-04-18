@@ -1,7 +1,7 @@
-package net.einself.sicherheitswerkzeug.member.output.domain;
+package net.einself.hingucker.member.output.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import net.einself.sicherheitswerkzeug.core.data.Result;
+import net.einself.hingucker.core.data.Result;
 
 import java.util.HashMap;
 import java.util.List;

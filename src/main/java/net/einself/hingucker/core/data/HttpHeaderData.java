@@ -1,4 +1,4 @@
-package net.einself.sicherheitswerkzeug.core.data;
+package net.einself.hingucker.core.data;
 
 public class HttpHeaderData implements Data {
 
