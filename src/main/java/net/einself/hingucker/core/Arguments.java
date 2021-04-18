@@ -1,10 +1,10 @@
-package net.einself.hingucker;
+package net.einself.hingucker.core;
 
 import com.beust.jcommander.Parameter;
 
 import java.io.File;
 
-class ProgramArguments {
+public class Arguments {
 
     @Parameter(names = "--namelist")
     private File nameListFile;

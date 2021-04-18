@@ -2,6 +2,7 @@ package net.einself.hingucker;
 
 import com.beust.jcommander.JCommander;
 import com.google.inject.Guice;
+import net.einself.hingucker.core.Arguments;
 import net.einself.hingucker.core.data.DomainDataResult;
 import net.einself.hingucker.databus.DataBus;
 import net.einself.hingucker.databus.DataBusModule;
@@ -13,7 +14,7 @@ import net.einself.hingucker.member.url.UrlMember;
 public class Main {
 
     public static void main(String[] argv) {
-        final ProgramArguments args = createProgramArguments(argv);
+        final Arguments args = createProgramArguments(argv);
 
         final var injector = Guice.createInjector(
                 new DataBusModule()
@@ -29,8 +30,8 @@ public class Main {
         dataBus.publish(new DomainDataResult(args.getTarget()));
     }
 
-    private static ProgramArguments createProgramArguments(String[] argv) {
-        final var args = new ProgramArguments();
+    private static Arguments createProgramArguments(String[] argv) {
+        final var args = new Arguments();
         JCommander.newBuilder().addObject(args).build().parse(argv);
         return args;
     }
