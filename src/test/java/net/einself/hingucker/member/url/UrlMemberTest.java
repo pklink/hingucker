@@ -1,31 +1,26 @@
 package net.einself.hingucker.member.url;
 
 import net.einself.hingucker.core.message.DomainResultMessage;
-import net.einself.hingucker.core.message.UrlMessage;
-import net.einself.hingucker.core.messagebus.MessageBus;
+import net.einself.hingucker.member.url.handler.DomainResultMessageHandler;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentCaptor;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class UrlMemberTest {
 
     @Test
-    void domainDataResultShouldPublishHttpAndHttpsUrlData() {
+    void shouldRouteDomainResultMessageToDomainResultMessageHandler() {
         // arrange
-        final var dataBus = mock(MessageBus.class);
-        final var urlMember = new UrlMember(dataBus);
         final var domainDataResult = new DomainResultMessage("domain.com");
+        final var domainResultMessageHandler = mock(DomainResultMessageHandler.class);
+        final var underTest = new UrlMember(domainResultMessageHandler);
 
         // act
-        urlMember.accept(domainDataResult);
+        underTest.accept(domainDataResult);
 
         // assert
-        final var urlDataArgument = ArgumentCaptor.forClass(UrlMessage.class);
-        verify(dataBus, times(2)).publish(urlDataArgument.capture());
-        assertThat(urlDataArgument.getAllValues().get(0).get()).isEqualTo("http://domain.com");
-        assertThat(urlDataArgument.getAllValues().get(1).get()).isEqualTo("https://domain.com");
+        verify(domainResultMessageHandler).accept(domainDataResult);
     }
 
 }
