@@ -1,9 +1,9 @@
 package net.einself.hingucker.member.httprobe;
 
-import net.einself.hingucker.core.data.UrlData;
-import net.einself.hingucker.databus.DataBus;
+import net.einself.hingucker.core.message.UrlMessage;
+import net.einself.hingucker.core.messagebus.MessageBus;
 import net.einself.hingucker.core.Member;
-import net.einself.hingucker.core.data.Data;
+import net.einself.hingucker.core.message.Message;
 import net.einself.hingucker.member.httprobe.handler.UrlHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,21 +14,21 @@ public class HttpProbeMember implements Member {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private final DataBus dataBus;
+    private final MessageBus messageBus;
 
     @Inject
-    public HttpProbeMember(DataBus dataBus) {
-        this.dataBus = dataBus;
+    public HttpProbeMember(MessageBus messageBus) {
+        this.messageBus = messageBus;
     }
 
     @Override
-    public void accept(Data data) {
+    public void accept(Message message) {
         LOGGER.debug("Receiving data");
 
-        if (data instanceof UrlData) {
-            final var url = (UrlData) data;
+        if (message instanceof UrlMessage) {
+            final var url = (UrlMessage) message;
             LOGGER.debug("Resolve data as Url type: {}", url.get());
-            new UrlHandler(dataBus, url).run();
+            new UrlHandler(messageBus, url).run();
         }
     }
 

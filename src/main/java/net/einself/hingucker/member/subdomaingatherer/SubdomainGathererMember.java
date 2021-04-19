@@ -1,9 +1,9 @@
 package net.einself.hingucker.member.subdomaingatherer;
 
-import net.einself.hingucker.core.data.Data;
-import net.einself.hingucker.databus.DataBus;
+import net.einself.hingucker.core.message.Message;
+import net.einself.hingucker.core.messagebus.MessageBus;
 import net.einself.hingucker.core.Member;
-import net.einself.hingucker.core.data.DomainDataResult;
+import net.einself.hingucker.core.message.DomainResultMessage;
 import net.einself.hingucker.member.subdomaingatherer.handler.DomainHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,21 +13,21 @@ import javax.inject.Inject;
 public class SubdomainGathererMember implements Member {
 
     private static final Logger LOGGER = LogManager.getLogger();
-    private final DataBus dataBus;
+    private final MessageBus messageBus;
 
     @Inject
-    public SubdomainGathererMember(DataBus dataBus) {
-        this.dataBus = dataBus;
+    public SubdomainGathererMember(MessageBus messageBus) {
+        this.messageBus = messageBus;
     }
 
     @Override
-    public void accept(Data data) {
+    public void accept(Message message) {
         LOGGER.debug("Receiving data");
 
-        if (data instanceof DomainDataResult) {
-            final var domain = (DomainDataResult) data;
+        if (message instanceof DomainResultMessage) {
+            final var domain = (DomainResultMessage) message;
             LOGGER.debug("Resolves data as Subdomain data: {}", domain.getDomain());
-            new DomainHandler(dataBus, domain).run();
+            new DomainHandler(messageBus, domain).run();
         }
     }
 

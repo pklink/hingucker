@@ -1,10 +1,10 @@
 package net.einself.hingucker.core;
 
-import net.einself.hingucker.core.data.Data;
+import net.einself.hingucker.core.message.Message;
 
 @FunctionalInterface
 public interface Member {
 
-    void accept(Data data);
+    void accept(Message message);
 
 }

@@ -1,9 +1,9 @@
 package net.einself.hingucker.member.url;
 
-import net.einself.hingucker.databus.DataBus;
-import net.einself.hingucker.core.data.Data;
-import net.einself.hingucker.core.data.DomainDataResult;
-import net.einself.hingucker.core.data.UrlData;
+import net.einself.hingucker.core.messagebus.MessageBus;
+import net.einself.hingucker.core.message.Message;
+import net.einself.hingucker.core.message.DomainResultMessage;
+import net.einself.hingucker.core.message.UrlMessage;
 import net.einself.hingucker.core.Member;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,33 +14,33 @@ public class UrlMember implements Member {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private final DataBus dataBus;
+    private final MessageBus messageBus;
 
     @Inject
-    public UrlMember(DataBus dataBus) {
-        this.dataBus = dataBus;
+    public UrlMember(MessageBus messageBus) {
+        this.messageBus = messageBus;
     }
 
 
     @Override
-    public void accept(Data data) {
-        LOGGER.debug("Received data {}", data.getClass().getName());
+    public void accept(Message message) {
+        LOGGER.debug("Received data {}", message.getClass().getName());
 
-        if (data instanceof DomainDataResult) {
-            final var domain = (DomainDataResult) data;
+        if (message instanceof DomainResultMessage) {
+            final var domain = (DomainResultMessage) message;
             LOGGER.debug("Resolve data as Domain data: {}", domain.getDomain());
             publishUrl(domain);
         }
     }
 
-    private void publishUrl(DomainDataResult domain) {
+    private void publishUrl(DomainResultMessage domain) {
         publishUrl("http", domain);
         publishUrl("https", domain);
     }
 
-    private void publishUrl(String protocol, DomainDataResult domain) {
+    private void publishUrl(String protocol, DomainResultMessage domain) {
         final var url = String.format("%s://%s", protocol, domain.getDomain());
-        dataBus.publish(new UrlData(url));
+        messageBus.publish(new UrlMessage(url));
     }
 
 }

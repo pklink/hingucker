@@ -1,7 +1,7 @@
 package net.einself.hingucker.member.subdomaingatherer.handler;
 
-import net.einself.hingucker.databus.DataBus;
-import net.einself.hingucker.core.data.DomainDataResult;
+import net.einself.hingucker.core.messagebus.MessageBus;
+import net.einself.hingucker.core.message.DomainResultMessage;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,12 +21,12 @@ public class DomainHandler {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private final DomainDataResult domain;
+    private final DomainResultMessage domain;
     private final File nameListFile;
-    private final DataBus dataBus;
+    private final MessageBus messageBus;
 
-    public DomainHandler(DataBus dataBus, DomainDataResult domain) {
-        this.dataBus = dataBus;
+    public DomainHandler(MessageBus messageBus, DomainResultMessage domain) {
+        this.messageBus = messageBus;
         this.domain = domain;
         final var namelistFilepath = System.getenv().get("NAMELIST_FILEPATH");
         this.nameListFile = new File(namelistFilepath);
@@ -53,14 +53,14 @@ public class DomainHandler {
     }
 
     private void publish(InetSocketAddress inetSocketAddress) {
-        dataBus.publish(createDomain(inetSocketAddress));
+        messageBus.publish(createDomain(inetSocketAddress));
     }
 
-    private DomainDataResult createDomain(InetSocketAddress inetSocketAddress) {
+    private DomainResultMessage createDomain(InetSocketAddress inetSocketAddress) {
         final var address = inetSocketAddress.getAddress();
         final var hostName = address.getHostName();
         LOGGER.info("Found domain {}", hostName);
-        return new DomainDataResult(hostName);
+        return new DomainResultMessage(hostName);
     }
 
     private SimpleResolver createResolver(String domain) {

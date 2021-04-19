@@ -3,9 +3,9 @@ package net.einself.hingucker;
 import com.beust.jcommander.JCommander;
 import com.google.inject.Guice;
 import net.einself.hingucker.core.Arguments;
-import net.einself.hingucker.core.data.DomainDataResult;
-import net.einself.hingucker.databus.DataBus;
-import net.einself.hingucker.databus.DataBusModule;
+import net.einself.hingucker.core.message.DomainResultMessage;
+import net.einself.hingucker.core.messagebus.MessageBus;
+import net.einself.hingucker.core.messagebus.MessageBusModule;
 import net.einself.hingucker.member.httprobe.HttpProbeMember;
 import net.einself.hingucker.member.output.OutputMember;
 import net.einself.hingucker.member.subdomaingatherer.SubdomainGathererMember;
@@ -17,17 +17,17 @@ public class Main {
         final Arguments args = createProgramArguments(argv);
 
         final var injector = Guice.createInjector(
-                new DataBusModule()
+                new MessageBusModule()
         );
 
-        final var dataBus = injector.getInstance(DataBus.class);
+        final var messageBus = injector.getInstance(MessageBus.class);
 
-        dataBus.subscribe(injector.getInstance(SubdomainGathererMember.class));
-        dataBus.subscribe(injector.getInstance(HttpProbeMember.class));
-        dataBus.subscribe(injector.getInstance(UrlMember.class));
-        dataBus.subscribe(injector.getInstance(OutputMember.class));
+        messageBus.subscribe(injector.getInstance(SubdomainGathererMember.class));
+        messageBus.subscribe(injector.getInstance(HttpProbeMember.class));
+        messageBus.subscribe(injector.getInstance(UrlMember.class));
+        messageBus.subscribe(injector.getInstance(OutputMember.class));
 
-        dataBus.publish(new DomainDataResult(args.getTarget()));
+        messageBus.publish(new DomainResultMessage(args.getTarget()));
     }
 
     private static Arguments createProgramArguments(String[] argv) {

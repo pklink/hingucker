@@ -1,15 +1,15 @@
-package net.einself.hingucker.core.data;
+package net.einself.hingucker.core.message;
 
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class UrlDataTest {
+class UrlMessageTest {
 
     @Test
     void getterShouldReturnUrl() {
         // arrange
-        final var underTest = new UrlData("FOO");
+        final var underTest = new UrlMessage("FOO");
 
         // act
         final var result = underTest.get();

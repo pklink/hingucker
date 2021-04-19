@@ -1,11 +1,11 @@
-package net.einself.hingucker.core.data;
+package net.einself.hingucker.core.message;
 
-public class HttpHeaderData implements Data {
+public class HttpHeaderMessage implements Message {
 
     private final String name;
     private final String value;
 
-    public HttpHeaderData(String name, String value) {
+    public HttpHeaderMessage(String name, String value) {
         this.name = name;
         this.value = value;
     }

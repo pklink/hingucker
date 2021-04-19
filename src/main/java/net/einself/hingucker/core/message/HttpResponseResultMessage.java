@@ -1,15 +1,15 @@
-package net.einself.hingucker.core.data;
+package net.einself.hingucker.core.message;
 
 
 import java.util.List;
 
-public class HttpResponseDataResult implements Data, Result {
+public class HttpResponseResultMessage implements ResultMessage {
 
     private final String url;
     private final String method;
-    private final List<HttpHeaderData> httpHeaders;
+    private final List<HttpHeaderMessage> httpHeaders;
 
-    public HttpResponseDataResult(String url, String method, List<HttpHeaderData> httpHeaders) {
+    public HttpResponseResultMessage(String url, String method, List<HttpHeaderMessage> httpHeaders) {
         this.url = url;
         this.method = method;
         this.httpHeaders = httpHeaders;
@@ -23,7 +23,7 @@ public class HttpResponseDataResult implements Data, Result {
         return method;
     }
 
-    public List<HttpHeaderData> getHeaders() {
+    public List<HttpHeaderMessage> getHeaders() {
         return httpHeaders;
     }
 }

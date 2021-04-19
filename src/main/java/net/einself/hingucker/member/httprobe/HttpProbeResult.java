@@ -1,10 +1,10 @@
 package net.einself.hingucker.member.httprobe;
 
-import net.einself.hingucker.core.data.Data;
+import net.einself.hingucker.core.message.Message;
 
 import java.util.List;
 
-public class HttpProbeResult implements Data {
+public class HttpProbeResult implements Message {
 
     private final String method;
     private final String url;

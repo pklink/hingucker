@@ -1,7 +1,7 @@
 package net.einself.hingucker.member.output.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import net.einself.hingucker.core.data.Result;
+import net.einself.hingucker.core.message.ResultMessage;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Project {
     private final String name;
 
     @JSONField(ordinal = 100)
-    private final Map<String, List<Result>> results = new HashMap<>();
+    private final Map<String, List<ResultMessage>> results = new HashMap<>();
 
     public Project(String name) {
         this.name = name;
@@ -23,7 +23,7 @@ public class Project {
         return name;
     }
 
-    public Map<String, List<Result>> getResults() {
+    public Map<String, List<ResultMessage>> getResults() {
         return results;
     }
 

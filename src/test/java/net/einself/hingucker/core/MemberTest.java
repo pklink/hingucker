@@ -1,4 +1,4 @@
-package net.einself.hingucker.member;
+package net.einself.hingucker.core;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import net.einself.hingucker.core.Member;
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
-class MemberArchTest {
+class MemberTest {
 
     private JavaClasses importedClasses;
 

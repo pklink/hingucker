@@ -2,8 +2,8 @@ package net.einself.hingucker.member.output;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import net.einself.hingucker.core.data.Data;
-import net.einself.hingucker.core.data.Result;
+import net.einself.hingucker.core.message.Message;
+import net.einself.hingucker.core.message.ResultMessage;
 import net.einself.hingucker.core.Member;
 import net.einself.hingucker.member.output.domain.Project;
 import org.apache.commons.io.FileUtils;
@@ -29,9 +29,9 @@ public class OutputMember implements Member {
     }
 
     @Override
-    public void accept(Data data) {
-        if (data instanceof Result) {
-            final var result = (Result) data;
+    public void accept(Message message) {
+        if (message instanceof ResultMessage) {
+            final var result = (ResultMessage) message;
             final var name = result.getClass().getSimpleName();
 
             final var results = project.getResults().getOrDefault(name, new ArrayList<>());
