@@ -1,5 +1,6 @@
 package net.einself.hingucker.member.subdomaingatherer.handler;
 
+import net.einself.hingucker.core.MessageHandler;
 import net.einself.hingucker.core.messagebus.MessageBus;
 import net.einself.hingucker.core.message.DomainResultMessage;
 import org.apache.commons.io.FileUtils;
@@ -7,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xbill.DNS.SimpleResolver;
 
+import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -17,19 +19,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.UnaryOperator;
 
-public class DomainHandler {
+public class DomainResultMessageHandler implements MessageHandler<DomainResultMessage> {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private final DomainResultMessage domain;
     private final File nameListFile;
     private final MessageBus messageBus;
 
-    public DomainHandler(MessageBus messageBus, DomainResultMessage domain) {
+    @Inject
+    public DomainResultMessageHandler(MessageBus messageBus) {
         this.messageBus = messageBus;
-        this.domain = domain;
-        final var namelistFilepath = System.getenv().get("NAMELIST_FILEPATH");
-        this.nameListFile = new File(namelistFilepath);
+        this.nameListFile = new File(System.getenv().get("NAMELIST_FILEPATH"));
     }
 
     private static List<String> getNames(File file) {
@@ -41,8 +41,9 @@ public class DomainHandler {
         }
     }
 
-    public void run() {
-        final UnaryOperator<String> buildSubdomain = name -> name + "." + domain.getDomain();
+    @Override
+    public void accept(DomainResultMessage message) {
+        final UnaryOperator<String> buildSubdomain = name -> name + "." + message.getDomain();
 
         getNames(nameListFile).stream()
                 .map(buildSubdomain)
@@ -71,5 +72,6 @@ public class DomainHandler {
             return null;
         }
     }
+
 
 }

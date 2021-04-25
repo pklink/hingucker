@@ -9,6 +9,7 @@ import net.einself.hingucker.core.messagebus.MessageBusModule;
 import net.einself.hingucker.member.httprobe.HttpProbeMember;
 import net.einself.hingucker.member.output.OutputMember;
 import net.einself.hingucker.member.subdomaingatherer.SubdomainGathererMember;
+import net.einself.hingucker.member.subdomaingatherer.SubdomainGathererMemberModule;
 import net.einself.hingucker.member.url.UrlMember;
 import net.einself.hingucker.member.url.UrlMemberModule;
 
@@ -19,6 +20,7 @@ public class Main {
 
         final var injector = Guice.createInjector(
                 new MessageBusModule(),
+                new SubdomainGathererMemberModule(),
                 new UrlMemberModule()
         );
 
